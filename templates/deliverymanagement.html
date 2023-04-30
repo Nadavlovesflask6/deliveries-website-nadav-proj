@@ -1,0 +1,33 @@
+{% extends 'layout.html' %} {% block content %}
+<h4>Previous Deliveries - Admin</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Delivery Number</th>
+      <th>Address</th>
+      <th>Comment</th>
+      <th>Date of The Delivery</th>
+      <th>Is Delivered</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for delivery in deliveries %}
+
+    <form action="{{url_for('customers.deliverymanagement')}}" method="POST">
+      <tr>
+        <td>{{ delivery.order_id }}</td>
+        <td>{{ delivery.address }}</td>
+        <td>{{ delivery.comment }}</td>
+        <td>{{ delivery.created.strftime('%b %d, %Y %I:%M %p') }}</td>
+        <td>
+          <button name="delivery" value="{{ delivery.order_id }}">
+            Press Me to Send Delivery
+            <td>{{ 'Yes' if delivery.is_delivered else 'No' }}</td>
+          </button>
+        </td>
+      </tr>
+    </form>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

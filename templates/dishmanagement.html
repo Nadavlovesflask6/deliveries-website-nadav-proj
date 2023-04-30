@@ -1,0 +1,94 @@
+{% extends 'layout.html' %} {% block content %}
+<h3>Dish Management</h3>
+<hr />
+{% if current_user.is_staff %}
+<h4>Categories</h4>
+<p>
+  <a
+    href="{{ url_for('foods.add_category') }}"
+    style="font-size: 16px; color: rgb(47, 16, 222)"
+    >Add a new category</a
+  >
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for category in categories %}
+    <tr>
+      <td>{{ category.name }}</td>
+      <td><img src="{{ category.image }}" height="200px" width="220px" /></td>
+      <td>
+        <a
+          href="{{ url_for('foods.edit_category', id=category.id) }}"
+          style="font-size: 16px; color: rgb(47, 16, 222)"
+          >Edit</a
+        >
+        <a
+          href="{{ url_for('foods.delete_category', id=category.id) }}"
+          style="font-size: 16px; color: rgb(47, 16, 222)"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<hr />
+<h4>Dishes</h4>
+<p>
+  <a
+    href="{{ url_for('foods.add_dish') }}"
+    style="font-size: 16px; color: rgb(47, 16, 222)"
+    >Add a new dish</a
+  >
+</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th>Gluten-free</th>
+      <th>Vegetarian</th>
+      <th>Category</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for dish in dishes %}
+    <tr>
+      <td>{{ dish.name }}</td>
+      <td>{{ dish.price }}</td>
+      <td>{{ dish.description }}</td>
+      <td><img src="{{ dish.image }}" height="100px" /></td>
+      <td>{% if dish.is_gluten_free %}Yes{% else %}No{% endif %}</td>
+      <td>{% if dish.is_vegetarian %}Yes{% else %}No{% endif %}</td>
+      <td>{{ dish.category.name }}</td>
+      <td>
+        <a
+          href="{{ url_for('foods.edit_dish', id=dish.id) }}"
+          style="font-size: 16px; color: rgb(47, 16, 222)"
+          >Edit</a
+        >
+        <a
+          href="{{ url_for('foods.delete_dish', id=dish.id) }}"
+          style="font-size: 16px; color: rgb(47, 16, 222)"
+          >Delete</a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% else %}
+<p>This page is for admins only.</p>
+{% endif %} {% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'layout.html' %} {% block content %}
+<div class="container">
+  <h2 style="font-weight: bolder">{{category.name}}</h2>
+  <form action="{{ url_for('orders.cart') }}" method="post">
+    <h5>Press Item For More Information!</h5>
+    <div style="display: flex; flex-wrap: wrap">
+      {% for dish in dish_category %}
+      <div style="display: flex; flex-direction: column; width: 30%">
+        <img src="{{dish.image}}" height="75px" width="75px" />
+        <div style="text-align: center">
+          <a
+            href="{{url_for('foods.dishes', id=dish.id)}}"
+            style="font-size: 24px"
+            >{{dish.name}}</a
+          >
+          <div>${{dish.price}}</div>
+          <input
+            type="number"
+            name="{{ dish.id }}"
+            min="1"
+            max="10"
+            value="1"
+            placeholder="Choose Amount You Would Like to Order"
+          />
+          <button type="submit" name="add_to_cart" value="{{ dish.id }}">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </form>
+</div>
+{% endblock %}

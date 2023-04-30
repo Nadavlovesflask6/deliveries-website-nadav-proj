@@ -1,0 +1,27 @@
+{% extends 'layout.html' %} {% block content %}
+<style>
+  ::placeholder {
+    font-weight: bold;
+    color: rgb(157, 8, 8);
+    opacity: 0.4;
+  }
+</style>
+<form action="/signup" method="POST">
+  <div>
+    <input type="text" name="username" placeholder="Username" />
+  </div>
+  <div>
+    <input type="text" name="password" placeholder="Password" />
+  </div>
+  <div>
+    <input type="text" name="first_name" placeholder="First Name" />
+  </div>
+  <div>
+    <input type="text" name="last_name" placeholder="Last Name" />
+  </div>
+  <div>
+    <input type="text" name="email" placeholder="Email" />
+  </div>
+  <button type="submit" class="btn btn-primary">Sign Up Here!</button>
+</form>
+{% endblock %}

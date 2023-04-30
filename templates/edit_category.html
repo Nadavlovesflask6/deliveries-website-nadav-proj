@@ -1,0 +1,29 @@
+{% extends "layout.html" %} {% block content %}
+<h1>Edit Category: {{ category.name }}</h1>
+<form
+  method="POST"
+  action="{{ url_for('foods.edit_category', id=category.id) }}"
+>
+  <div class="form-group">
+    <label for="category_name">Category Name</label>
+    <input
+      type="text"
+      id="category_name"
+      name="category_name"
+      value="{{ category.name }}"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="category_imageurl">Category Image URL</label>
+    <input
+      type="text"
+      id="category_imageurl"
+      name="category_imageurl"
+      value="{{ category.image }}"
+      required
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Update Category</button>
+</form>
+{% endblock %}

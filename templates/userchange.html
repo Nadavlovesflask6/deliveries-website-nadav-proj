@@ -1,0 +1,27 @@
+{% extends 'layout.html' %} {% block content %}
+<h4>Update Your Details Here:</h4>
+{% with messages = get_flashed_messages() %} {% if messages %}
+<ul class="flash">
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %} {% endwith %}
+<form method="post">
+  <label for="username">Username:</label>
+  <input
+    type="text"
+    id="username"
+    name="username"
+    value="{{ user.username }}"
+  />
+  <label for="password">Password:</label>
+  <input
+    type="password"
+    id="password"
+    name="password"
+    value="{{ user.password }}"
+  />
+  <button type="submit">Update Details</button>
+</form>
+{% endblock %}

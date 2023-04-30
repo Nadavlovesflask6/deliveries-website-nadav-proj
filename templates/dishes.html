@@ -1,0 +1,42 @@
+{% extends 'layout.html' %} {% block content %}
+<table style="width: 80%">
+  <thead>
+    <tr>
+      <th style="width: 16.6%; padding: 2px; text-align: center">Name</th>
+      <th style="width: 16.6%; padding: 2px; text-align: center">Price</th>
+      <th style="width: 16.6%; padding: 2px; text-align: center">
+        Description
+      </th>
+      <th style="width: 16.6%; padding: 2px; text-align: center">Image</th>
+      <th style="width: 16.6%; padding: 2px; text-align: center">
+        Is Gluten Free
+      </th>
+      <th style="width: 16.6%; padding: 2px; text-align: center">
+        Is Vegetarian
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="width: 16.6%; padding: 2px; text-align: center">
+        {{ dish.name }}
+      </td>
+      <td style="width: 16.6%; padding: 2px; text-align: center">
+        ${{ dish.price }}
+      </td>
+      <td style="width: 16.6%; padding: 2px; text-align: center">
+        {{ dish.description }}
+      </td>
+      <td style="width: 16.6%; padding: 2px; text-align: center">
+        <img src="{{ dish.image }}" height="250px" width="250px" />
+      </td>
+      <td style="width: 16.6%; padding: 2px; text-align: center">
+        {{ dish.is_gluten_free }}
+      </td>
+      <td style="width: 16.6%; padding: 2px; text-align: center">
+        {{ dish.is_vegetarian }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

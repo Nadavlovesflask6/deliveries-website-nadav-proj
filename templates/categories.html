@@ -1,0 +1,19 @@
+{% extends 'layout.html' %} {% block content %}
+<h2>Welcome {{current_user.username}}!</h2>
+<h5>
+  Start Your Order Here! <br />
+  <p>
+    Click the Categories and Add Items from Following Categories to Your Cart:
+  </p>
+</h5>
+<div style="display: flex; flex-direction: row; justify-content: space-between">
+  {% for onecategory in categories %}
+  <div style="margin-right: 30px">
+    <h4>{{onecategory.name}}</h4>
+    <a href="{{url_for('foods.show_categories', id=onecategory.id)}}"
+      ><img style="width: 210px; height: 220px" src="{{onecategory.image}}"
+    /></a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

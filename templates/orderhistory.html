@@ -1,0 +1,26 @@
+{% extends 'layout.html' %} {% block content %}
+<h4>Previous Deliveries</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Delivery Number</th>
+      <th>Address</th>
+      <th>Comment</th>
+      <th>Date of The Delivery</th>
+      <th>Is Delivered</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for delivery in deliveries %} {% for cart in my_carts %} {% if
+    delivery.order_id == cart.id %}
+    <tr>
+      <td>{{ delivery.order_id }}</td>
+      <td>{{ delivery.address }}</td>
+      <td>{{ delivery.comment }}</td>
+      <td>{{ delivery.created.strftime('%b %d, %Y %I:%M %p') }}</td>
+      <td>{{ 'Yes' if delivery.is_delivered else 'No' }}</td>
+    </tr>
+    {% endif %} {% endfor %} {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
