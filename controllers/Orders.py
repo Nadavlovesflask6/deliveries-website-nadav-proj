@@ -28,7 +28,7 @@ def order():
         user_cart = Cart(user_id=current_user.id)
         db.session.add(user_cart)
         db.session.commit()
-        return render_template('orderhistory.html')
+        return redirect(url_for("orders.orderhistory"))
     return render_template('order.html')
 
 @login_required
